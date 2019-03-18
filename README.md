@@ -1,2 +1,2 @@
 # curso-deploy
-Curso de deply automático
+Curso de deploy automático
