@@ -15,6 +15,14 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     
+    <repositories>
+        <repository>
+            <id>prime-repo</id>
+            <name>PrimeFaces Maven Repository</name>
+            <url>http://repository.primefaces.org</url>
+        </repository>    
+    </repositories>
+    
     <dependencies>
         
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
@@ -36,6 +44,12 @@
             <groupId>com.sun.faces</groupId>
             <artifactId>jsf-impl</artifactId>
             <version>2.2.18</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>7.0.RC3</version>
         </dependency>
     
     </dependencies>

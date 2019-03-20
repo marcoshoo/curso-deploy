@@ -15,8 +15,9 @@ public class HelloWorld {
 		return "Bem-vindo ao curso de deploy automático e padrões de qualidade!";
 	}
 
-	public void clean() {
-		this.name = this.nameReversed = "";
+	public String clean() {
+		this.name = this.nameReversed = "";		
+		return "";
 	}
 
 	public String getName() {
