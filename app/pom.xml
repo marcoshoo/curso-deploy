@@ -23,8 +23,7 @@
         </repository>    
     </repositories>
     
-    <dependencies>
-        
+    <dependencies>        
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -50,33 +49,135 @@
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <version>7.0.RC3</version>
-        </dependency>
-        
-        <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports</artifactId>
-            <version>6.7.0</version>
-        </dependency>
-    
+        </dependency>           
     </dependencies>
     
-    <build>
-        <finalName>${project.artifactId}</finalName>        
+    <profiles>    
+        <profile>
+            <id>loc</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <filters>
+                    <filter>src/main/filters/local.properties</filter>
+                </filters>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.tomcat.maven</groupId>
+                        <artifactId>tomcat7-maven-plugin</artifactId>
+                        <version>2.2</version>
+                        <configuration>
+                            <url>http://localhost:8080/manager/text</url>
+                            <path>/${project.build.finalName}</path>
+                            <username>admin</username>
+                            <password>admin</password>
+                            <update>true</update>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+               
+        <profile>
+            <id>des</id>
+            <build>
+                <filters>
+                    <filter>src/main/filters/desenvolvimento.properties</filter>
+                </filters>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.tomcat.maven</groupId>
+                        <artifactId>tomcat7-maven-plugin</artifactId>
+                        <version>2.2</version>
+                        <configuration>
+                            <url>http://localhost:8080/manager/text</url>
+                            <path>/${project.build.finalName}</path>
+                            <username>admin</username>
+                            <password>admin</password>
+                            <update>true</update>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile> 
+        
+        <profile>
+            <id>hom</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <filters>
+                    <filter>src/main/filters/homologacao.properties</filter>
+                </filters>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.tomcat.maven</groupId>
+                        <artifactId>tomcat7-maven-plugin</artifactId>
+                        <version>2.2</version>
+                        <configuration>
+                            <url>http://localhost:8080/manager/text</url>
+                            <path>/${project.build.finalName}</path>
+                            <username>admin</username>
+                            <password>admin</password>
+                            <update>true</update>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        <profile>
+            <id>prod</id>
+            <build>
+                <filters>
+                    <filter>src/main/filters/producao.properties</filter>
+                </filters>
+                <plugins>
+                    <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
+                    <configuration>
+                        <url>http://localhost:8180/manager/text</url>
+                        <path>/${project.build.finalName}</path>
+                        <username>admin</username>
+                        <password>admin</password>
+                        <update>true</update>
+                    </configuration>
+                </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+        
+    <build>        
+        <finalName>${project.artifactId}</finalName>
+        
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>           
+        
         <plugins>
             <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <url>http://localhost:8180/manager/text</url>
-                    <path>/${project.build.finalName}</path>
-                    <username>admin</username>
-                    <password>admin</password>
-                    <update>true</update>
-                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-help-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>active-profiles</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
-        </plugins>    
+            
+              
+        </plugins>
     </build>
-
 </project>
