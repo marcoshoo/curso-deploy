@@ -14,13 +14,13 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-    
+
     <repositories>
         <repository>
-            <id>prime-repo</id>
-            <name>PrimeFaces Maven Repository</name>
-            <url>http://repository.primefaces.org</url>
-        </repository>    
+            <id>central</id>
+            <name>Local Artifactory Lib Releases</name>
+            <url>http://localhost:8081/artifactory/libs-release</url>
+        </repository>
     </repositories>
     
     <dependencies>        
@@ -104,9 +104,6 @@
         
         <profile>
             <id>hom</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <build>
                 <filters>
                     <filter>src/main/filters/homologacao.properties</filter>
