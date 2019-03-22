@@ -22,6 +22,20 @@
             <url>http://localhost:8081/artifactory/libs-release</url>
         </repository>
     </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <releases>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>Local Artifactory Lib Releases</name>
+            <url>http://localhost:8081/artifactory/libs-release</url>
+        </pluginRepository>
+    </pluginRepositories>
     
     <dependencies>        
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
